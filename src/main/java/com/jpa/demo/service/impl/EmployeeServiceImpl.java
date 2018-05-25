@@ -2,6 +2,7 @@ package com.jpa.demo.service.impl;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import com.jpa.demo.repo.EmployeeRepository;
 import com.jpa.demo.service.IEmployeeService;
 @Service
 public class EmployeeServiceImpl implements IEmployeeService {
+	
 	@Autowired
 	private EmployeeRepository repository;
 
@@ -23,38 +25,44 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
 	@Override
 	public void saveEmployees(Collection<Employee> emp) {
-		// TODO Auto-generated method stub
+		repository.saveAll(emp);
 		
 	}
 
 	@Override
 	public void deleteEmployeeById(Long empId) {
-		// TODO Auto-generated method stub
+		repository.deleteById(empId);
 		
 	}
 
 	@Override
 	public void deleteAllEmployees() {
-		// TODO Auto-generated method stub
+		repository.deleteAll();
 		
 	}
 
 	@Override
 	public Employee getEmployeeById(Long empId) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Employee> ob= repository.findById(empId);
+		if(ob.isPresent())
+			return ob.get();
+		else 
+			return null;
 	}
 
 	@Override
 	public List<Employee> getAllEmployees() {
-		// TODO Auto-generated method stub
-		return null;
+	  return repository.findAll();
+		
 	}
+
+	
 
 	@Override
 	public List<Employee> getFewEmployees(List<Long> empIds) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findAllById(empIds);
+		
+		
 	}
 
 }
