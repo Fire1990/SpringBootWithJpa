@@ -1,5 +1,12 @@
 package com.jpa.demo.model;
 
+
+
+
+
+
+
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,7 +19,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 @Entity
-@Table(name="emp_tab")
+@Table(name="employee_tab")
 public class Employee {
 	@Id
 	@Column(name="EMP_ID")
